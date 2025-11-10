@@ -38,3 +38,34 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+
+
+
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalText = document.getElementById('modal-text');
+const modalClose = document.getElementById('modal-close');
+
+const cards = document.querySelectorAll('.menu-card');
+
+cards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault(); // чтобы ссылка не срабатывала
+    modal.style.display = 'flex';
+
+    // Берём текст из карточки
+    modalTitle.textContent = card.querySelector('h3').textContent;
+    modalText.textContent = `Описание напитка "${modalTitle.textContent}" здесь.`;
+  });
+});
+
+// Закрытие модального окна
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Закрытие при клике на фон
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+});
