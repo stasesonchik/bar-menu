@@ -1,0 +1,122 @@
+/* === Основные стили === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0f;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === Шапка === */
+.header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.neon-title {
+  font-size: 2.2rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff,
+               0 0 10px #00ffff,
+               0 0 20px #00ffff,
+               0 0 40px #00ffff;
+  animation: flicker 2s infinite alternate;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+/* === Контейнер меню === */
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+/* === Карточка напитка === */
+.menu-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #00ffff;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.menu-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.menu-card h3 {
+  font-size: 1.2rem;
+  color: #00ffff;
+  margin-bottom: 5px;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.menu-card p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.menu-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+}
+
+/* === Подвал === */
+.footer {
+  margin-top: auto;
+  padding: 15px;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* === Анимация свечения === */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* === Адаптив под телефон === */
+@media (max-width: 600px) {
+  .neon-title {
+    font-size: 1.8rem;
+  }
+
+  .menu-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .menu-card {
+    padding: 12px;
+  }
+}
