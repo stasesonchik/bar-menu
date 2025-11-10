@@ -56,7 +56,7 @@ cards.forEach(card => {
 
     // Берём текст из карточки
     modalTitle.textContent = card.querySelector('h3').textContent;
-    modalText.textContent = `Описание напитка "${modalTitle.textContent}" здесь.`;
+    modalText.textContent = `Описание gнапитка "${modalTitle.textContent}" здесь.`;
   });
 });
 
