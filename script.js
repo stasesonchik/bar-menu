@@ -10,28 +10,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // Загружаем JSON с описаниями
   fetch('descriptions.json')
     .then(res => res.json())
-    .then(data => descriptions = data);
+    .then(data => descriptions = data)
+    .catch(err => console.warn("Не удалось загрузить описания", err));
 
-  // Появление карточек с анимацией
+  // Анимация появления карточек через CSS transition
   cards.forEach((card, i) => {
-    setTimeout(() => {
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, i * 150);
+    card.style.transitionDelay = `${i * 0.1}s`;
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
   });
 
-  // Клик по карточке → открытие модального окна
+  // Клик по карточке → открытие модалки
   cards.forEach(card => {
-    card.addEventListener('click', (e) => {
+    card.addEventListener('click', e => {
       e.preventDefault();
       const id = card.dataset.id;
       modalTitle.textContent = card.querySelector('h3').textContent;
       modalText.innerHTML = descriptions[id] || "Описание недоступно";
       modal.classList.add('show');
     });
-
-    card.addEventListener('mouseenter', () => card.classList.add('glow'));
-    card.addEventListener('mouseleave', () => card.classList.remove('glow'));
   });
 
   // Закрытие модалки

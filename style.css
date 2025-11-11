@@ -11,7 +11,6 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -19,27 +18,23 @@ body {
 /* === Шапка === */
 .header {
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .neon-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #00ffff;
-  text-shadow: 0 0 5px #00ffff,
-               0 0 10px #00ffff,
-               0 0 20px #00ffff,
-               0 0 40px #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
   animation: flicker 2s infinite alternate;
 }
 
 .subtitle {
   color: #aaa;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-top: 5px;
 }
+
 .section-title {
-  grid-column: 1 / -1;  /* занимает всю ширину сетки */
   text-align: center;
   font-size: 1.5rem;
   color: #00ffff;
@@ -47,79 +42,14 @@ body {
   text-shadow: 0 0 5px #00ffff;
 }
 
-
-
-/* === Контейнер меню === */
-.menu-container {
+/* === Сетка меню === */
+.menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* адаптивная сетка */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
   width: 90%;
   max-width: 900px;
-  margin-bottom: 40px;
-  justify-content: center;
-}
-
-
-
-
-.menu-card[data-id="getero_laguna"] {
-  justify-self: center; /* по центру */
-}
-
-.menu-card img {
-  width: 100%;           /* ширина по карточке */
-  height: 180px;         /* фиксированная высота */
-  object-fit: cover;     /* обрезаем, сохраняя пропорции и центрирование */
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-
-.shots-row {
-  display: flex !important;      /* принудительно flex */
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  grid-column: 1 / -1;           /* чтобы растянуть по всей ширине сетки */
-}
-
-.shots-row .menu-card {
-  width: 220px;   /* фиксированная ширина */
-}
-
-
-/* Красная рамка и неоновое свечение для шотов */
-.menu-container a[data-id="p_52"],
-.menu-container a[data-id="Kurator"],
-.menu-container a[data-id="Vkusno"],
-.menu-container a[data-id="Smert"] {
-  border-color: #ff0000;
-  box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
-}
-
-/* Красный заголовок */
-.menu-container a[data-id="p_52"] h3,
-.menu-container a[data-id="Kurator"] h3,
-.menu-container a[data-id="Vkusno"] h3,
-.menu-container a[data-id="Smert"] h3 {
-  color: #ff5555;
-  text-shadow: 0 0 5px #ff5555;
-}
-
-/* Позиционирование по сетке вручную */
-.menu-container a[data-id="p_52"]   { grid-column: 1; }
-.menu-container a[data-id="Kurator"] { grid-column: 2; }
-.menu-container a[data-id="Vkusno"]  { grid-column: 3; }
-.menu-container a[data-id="Smert"]   { grid-column: 4; }
-
-
-.menu-card[data-id="history"] { /* первая карточка второго ряда */
-  grid-column: 2; /* ставим во вторую колонку */
-}
-
-.menu-card[data-id="pivnaya_ryumka"] { /* вторая карточка второго ряда */
-  grid-column: 3; /* ставим в третью колонку */
+  margin: 0 auto 30px;
 }
 
 /* === Карточка напитка === */
@@ -127,83 +57,55 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid #00ffff;
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  color: #fff;
   text-decoration: none;
+  color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  opacity: 0;
-  transform: translateY(30px);
-  word-wrap: break-word;       /* перенос слов */
-  overflow-wrap: break-word;   /* современный способ переноса */
-  word-break: break-word;      /* разрыв слишком длинных слов */
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .menu-card img {
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 10px;
+  object-fit: cover;
+  margin-bottom: 8px;
 }
 
 .menu-card h3 {
-  font-size: 1.2rem;
-  color: #00ffff;
-
+  font-size: 1.1rem;
   margin-bottom: 5px;
+  color: #00ffff;
   text-shadow: 0 0 5px #00ffff;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
 }
 
-
 .menu-card p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #ccc;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .menu-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
 }
 
-/* === Подвал === */
-.footer {
-  margin-top: auto;
-  padding: 15px;
-  text-align: center;
-  color: #777;
-  font-size: 0.9rem;
+/* === Специальные шоты === */
+.menu-card.shot {
+  border-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
 }
 
-/* === Анимация свечения === */
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-  }
+.menu-card.shot h3 {
+  color: #ff5555;
+  text-shadow: 0 0 5px #ff5555;
 }
 
-/* === Адаптив под телефон === */
-@media (max-width: 600px) {
-  .menu-container {
-    grid-template-columns: 1fr; /* одна колонка на маленьких экранах */
-    gap: 15px;
-  }
-
-  .menu-card img {
-    padding-bottom: 140%; /* чуть выше для вертикального формата */
-  }
-}
-
-/* === Модальное окно === */
+/* === Модалка === */
 .modal {
-  display: none; /* по умолчанию скрыто */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -213,55 +115,22 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  padding: 15px;
 }
 
 .modal.show {
   display: flex;
-  opacity: 1;
   animation: fadeIn 0.3s forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 .modal-content {
   background-color: #0a0a0f;
   padding: 20px;
   border-radius: 15px;
+  width: 100%;
   max-width: 400px;
-  width: 90%;
-  color: #fff;
   text-align: center;
   box-shadow: 0 0 20px #00ffff;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.modal-content p {
-  line-height: 1.5;
-  font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 10px;
-}
-
-.modal-content em {
-  font-style: italic;
-  color: #00ffff;
-}
-
-.modal-content strong {
-  font-weight: bold;
-  color: #ff00ff;
-}
-
-.modal-content .highlight {
-  background-color: rgba(0, 255, 255, 0.2);
-  padding: 2px 4px;
-  border-radius: 3px;
 }
 
 .modal-close {
@@ -271,4 +140,48 @@ body {
   font-size: 1.5rem;
   cursor: pointer;
   color: #00ffff;
+}
+
+/* === Футер === */
+.footer {
+  margin-top: auto;
+  padding: 15px;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* === Анимации === */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* === Адаптив для телефонов === */
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .menu-card img {
+    height: auto;
+  }
+
+  .neon-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
 }
