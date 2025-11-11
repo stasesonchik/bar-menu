@@ -192,17 +192,13 @@ body {
 
 /* === Адаптив под телефон === */
 @media (max-width: 600px) {
-  .neon-title {
-    font-size: 1.8rem;
-  }
-
   .menu-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* одна колонка на маленьких экранах */
     gap: 15px;
   }
 
-  .menu-card {
-    padding: 12px;
+  .menu-card img {
+    padding-bottom: 140%; /* чуть выше для вертикального формата */
   }
 }
 
