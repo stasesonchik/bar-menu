@@ -61,6 +61,35 @@ body {
   justify-content: center;  /* выравнивание всей сетки */
    
 }
+
+
+
+.menu-card[data-id="getero_laguna"] {
+  justify-self: center; /* по центру */
+}
+
+.menu-card img {
+  width: 100%;           /* ширина по карточке */
+  height: 180px;         /* фиксированная высота */
+  object-fit: cover;     /* обрезаем, сохраняя пропорции и центрирование */
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
+.shots-row {
+  display: flex !important;      /* принудительно flex */
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;           /* чтобы растянуть по всей ширине сетки */
+}
+
+.shots-row .menu-card {
+  width: 220px;   /* фиксированная ширина */
+}
+
+
 /* Красная рамка и неоновое свечение для шотов */
 .menu-container a[data-id="p_52"],
 .menu-container a[data-id="Kurator"],
@@ -84,17 +113,6 @@ body {
 .menu-container a[data-id="Kurator"] { grid-column: 2; }
 .menu-container a[data-id="Vkusno"]  { grid-column: 3; }
 .menu-container a[data-id="Smert"]   { grid-column: 4; }
-
-
-/* Стиль для заголовка шотов */
-.shots-title {
-  color: #ff0000;          /* красный цвет текста */
-  font-size: 1.8rem;       /* размер текста */
-  font-weight: bold;        /* жирный текст */
-  text-align: center;       /* по центру */
-  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff5555; /* неоновый эффект */
-  margin: 20px 0;           /* отступ сверху и снизу */
-}
 
 
 .menu-card[data-id="history"] { /* первая карточка второго ряда */
@@ -131,6 +149,7 @@ body {
 .menu-card h3 {
   font-size: 1.2rem;
   color: #00ffff;
+
   margin-bottom: 5px;
   text-shadow: 0 0 5px #00ffff;
   word-wrap: break-word;
