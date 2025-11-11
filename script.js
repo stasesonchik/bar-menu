@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {id:'p_52', title:'П-52', price:'100₽', img:'assets/images/p_52.jpg'},
     {id:'Kurator', title:'Хуевый Куратор', price:'150₽ (2 шт)', img:'assets/images/kurator.jpg'},
     {id:'Vkusno', title:'Вкусно', price:'300₽ (6 шт)', img:'assets/images/vkusno.jpg'},
-    {id:'Smert', title:'Смерть в саване', price:'300₽ (6 шт)', img:'assets/images/smert.jpg'}
+    {id:'Smert', title:'Смерть в саване', price:'300₽ (6 шт)', img:'assets/images/smert2.jpg'}
   ];
 
   let currentCards = [];
@@ -104,42 +104,37 @@ document.addEventListener("DOMContentLoaded", () => {
   return card;
 }
 
-let history = []; // массив истории пролистываний
 
-function swipeCard(card, diffX) {
-  const direction = diffX > 0 ? 1 : -1;
+  function swipeCard(card, diffX) {
+    const direction = diffX > 0 ? 1 : -1;
+    card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+    card.style.transform = `translateX(${direction * 300}px) rotate(${direction * 10}deg)`;
+    card.style.opacity = '0';
 
-  if(direction === 1 && history.length > 0) {
-    // свайп вправо — вернуть предыдущую карточку
-    topIndex = history.pop(); // берём последний индекс
-    showNextCard(true); // true = отображение из истории
-  } else {
-    // свайп влево — обычное пролистывание
-    history.push(topIndex); // сохраняем текущий индекс
-    topIndex = (topIndex + 1) % currentCards.length;
-    showNextCard();
+    card.addEventListener('transitionend', () => {
+      card.remove();
+      topIndex = (topIndex + 1) % currentCards.length;
+      showNextCard();
+    }, { once: true });
   }
 
-  card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-  card.style.transform = `translateX(${direction * 300}px) rotate(${direction * 10}deg)`;
-  card.style.opacity = '0';
-  card.addEventListener('transitionend', () => card.remove(), { once: true });
-}
+  function showNextCard() {
+    mobileCardsContainer.innerHTML = '';
 
-function showNextCard(fromHistory = false) {
-  mobileCardsContainer.innerHTML = '';
-  const cardData = currentCards[topIndex];
-  const topCard = createCard(cardData);
-  mobileCardsContainer.appendChild(topCard);
+    // Верхняя карточка
+    const cardData = currentCards[topIndex];
+    const topCard = createCard(cardData);
+    mobileCardsContainer.appendChild(topCard);
 
-  // следующая карточка под ней
-  const nextIndex = (topIndex + 1) % currentCards.length;
-  const nextCard = createCard(currentCards[nextIndex]);
-  nextCard.style.transform = 'scale(0.95) translateY(10px)';
-  nextCard.style.opacity = '1';
-  nextCard.style.zIndex = currentCards.length - 1;
-  mobileCardsContainer.insertBefore(nextCard, topCard);
-}
+    // Следующая карточка (под ней)
+    const nextIndex = (topIndex + 1) % currentCards.length;
+    const nextData = currentCards[nextIndex];
+    const nextCard = createCard(nextData);
+    nextCard.style.transform = 'scale(0.95) translateY(10px)';
+    nextCard.style.opacity = '1';
+    nextCard.style.zIndex = currentCards.length - 1;
+    mobileCardsContainer.insertBefore(nextCard, topCard);
+  }
 
 function updateTheme(category) {
   document.body.classList.remove('cocktails-theme', 'shots-theme');
