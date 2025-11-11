@@ -3,97 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neon Bar Menu</title>
+  <title>Neon Bar Menu - Mobile</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Шапка -->
   <header class="header">
     <h1 class="neon-title">🍸 ДРД-БАР 🍸</h1>
     <p class="subtitle">Выбери свой напиток</p>
   </header>
 
-  <main>
-    <!-- Коктейли -->
-    <section class="menu-section cocktails">
-      <h2 class="section-title">Коктейли</h2>
-      <div class="menu-grid">
-        <a href="#" class="menu-card" data-id="long_island">
-          <img src="assets/images/long_island.jpg" alt="Unsigned long long island">
-          <h3>Unsigned long long island</h3>
-          <p>300₽</p>
-        </a>
+  <!-- Выбор типа -->
+  <div class="mobile-choice">
+    <button id="choose-cocktails">Коктейли</button>
+    <button id="choose-shots">Шоты</button>
+  </div>
 
-        <a href="#" class="menu-card" data-id="adren_arina">
-          <img src="assets/images/adren_arina.jpg" alt="АдренАрина">
-          <h3>АдренАрина</h3>
-          <p>250₽</p>
-        </a>
-
-        <a href="#" class="menu-card" data-id="sex_na_obscom">
-          <img src="assets/images/sex_na_obskom.jpg" alt="Секс на обском">
-          <h3>Секс на обском</h3>
-          <p>250₽</p>
-        </a>
-
-        <a href="#" class="menu-card" data-id="leka_v_prime">
-          <img src="assets/images/leka_v_praime.jpg" alt="Лека в прайме">
-          <h3>Лека в прайме</h3>
-          <p>200₽</p>
-        </a>
-
-        <!-- Добавленные карточки из шотов -->
-        <a href="#" class="menu-card" data-id="history">
-          <img src="assets/images/histori.jpg" alt="История">
-          <h3>История</h3>
-          <p>200₽</p>
-        </a>
-
-        <a href="#" class="menu-card" data-id="pivnaya_ryumka">
-          <img src="assets/images/ryumka.jpg" alt="Пивная рюмка">
-          <h3>Пивная рюмка из Трёхгорного</h3>
-          <p>150₽</p>
-        </a>
-
-        <a href="#" class="menu-card" data-id="getero_laguna">
-          <img src="assets/images/laguna.jpg" alt="Гетеросексуальная лагуна">
-          <h3>Гетеросексуальная лагуна</h3>
-          <p>150₽</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- Шоты -->
-    <section class="menu-section shots">
-      <h2 class="section-title">Шоты</h2>
-      <div class="menu-grid">
-        <a href="#" class="menu-card shot" data-id="p_52">
-          <img src="assets/images/p_p2.jpg" alt="П-52">
-          <h3>П-52</h3>
-          <p>100₽</p>
-        </a>
-
-        <a href="#" class="menu-card shot" data-id="Kurator">
-          <img src="assets/images/kurator.jpg" alt="Хуевый Куратор">
-          <h3>Хуевый Куратор</h3>
-          <p>150₽ (2 шт)</p>
-        </a>
-
-        <a href="#" class="menu-card shot" data-id="Vkusno">
-          <img src="assets/images/vkusno.jpg" alt="Вкусно">
-          <h3>Вкусно</h3>
-          <p>300₽ (6 шт)</p>
-        </a>
-
-        <a href="#" class="menu-card shot" data-id="Smert">
-          <img src="assets/images/smert.jpg" alt="Смерть в саване">
-          <h3>Смерть в саване</h3>
-          <p>300₽ (6 шт)</p>
-        </a>
-      </div>
-    </section>
-  </main>
+       <p id="welcome-text" class="welcome-text">Добро пожаловать!</p>
+</header>
+  <!-- Контейнер карточек -->
+  <div class="mobile-cards" id="mobile-cards"></div>
 
   <!-- Модальное окно -->
   <div id="modal" class="modal" role="dialog" aria-modal="true">
@@ -103,10 +33,5 @@
       <div id="modal-text"></div>
     </div>
   </div>
-
-  <!-- Подвал -->
-  <footer class="footer">
-    <p>© 2025 Neon Nights Bar</p>
-  </footer>
 </body>
 </html>
