@@ -47,6 +47,8 @@ body {
   text-shadow: 0 0 5px #00ffff;
 }
 
+
+
 /* === Контейнер меню === */
 .menu-container {
   display: grid;
@@ -58,6 +60,40 @@ body {
 
   justify-content: center;  /* выравнивание всей сетки */
    
+}
+/* Красная рамка и неоновое свечение для шотов */
+.menu-container a[data-id="p_52"],
+.menu-container a[data-id="Kurator"],
+.menu-container a[data-id="Vkusno"],
+.menu-container a[data-id="Smert"] {
+  border-color: #ff0000;
+  box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+}
+
+/* Красный заголовок */
+.menu-container a[data-id="p_52"] h3,
+.menu-container a[data-id="Kurator"] h3,
+.menu-container a[data-id="Vkusno"] h3,
+.menu-container a[data-id="Smert"] h3 {
+  color: #ff5555;
+  text-shadow: 0 0 5px #ff5555;
+}
+
+/* Позиционирование по сетке вручную */
+.menu-container a[data-id="p_52"]   { grid-column: 1; }
+.menu-container a[data-id="Kurator"] { grid-column: 2; }
+.menu-container a[data-id="Vkusno"]  { grid-column: 3; }
+.menu-container a[data-id="Smert"]   { grid-column: 4; }
+
+
+/* Стиль для заголовка шотов */
+.shots-title {
+  color: #ff0000;          /* красный цвет текста */
+  font-size: 1.8rem;       /* размер текста */
+  font-weight: bold;        /* жирный текст */
+  text-align: center;       /* по центру */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff5555; /* неоновый эффект */
+  margin: 20px 0;           /* отступ сверху и снизу */
 }
 
 
@@ -101,6 +137,7 @@ body {
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
 
 .menu-card p {
   font-size: 1rem;
