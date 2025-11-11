@@ -38,15 +38,35 @@ body {
   font-size: 1.1rem;
   margin-top: 5px;
 }
+.section-title {
+  grid-column: 1 / -1;  /* занимает всю ширину сетки */
+  text-align: center;
+  font-size: 1.5rem;
+  color: #00ffff;
+  margin: 20px 0 10px;
+  text-shadow: 0 0 5px #00ffff;
+}
 
 /* === Контейнер меню === */
 .menu-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, 220px); /* фиксированное количество колонок */
   gap: 20px;
   width: 90%;
   max-width: 900px;
-  margin-bottom: 40px;
+  margin-bottom: 40px; 
+
+  justify-content: center;  /* выравнивание всей сетки */
+   
+}
+
+
+.menu-card[data-id="history"] { /* первая карточка второго ряда */
+  grid-column: 2; /* ставим во вторую колонку */
+}
+
+.menu-card[data-id="pivnaya_ryumka"] { /* вторая карточка второго ряда */
+  grid-column: 3; /* ставим в третью колонку */
 }
 
 /* === Карточка напитка === */
@@ -61,6 +81,9 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(30px);
+  word-wrap: break-word;       /* перенос слов */
+  overflow-wrap: break-word;   /* современный способ переноса */
+  word-break: break-word;      /* разрыв слишком длинных слов */
 }
 
 .menu-card img {
@@ -74,11 +97,17 @@ body {
   color: #00ffff;
   margin-bottom: 5px;
   text-shadow: 0 0 5px #00ffff;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .menu-card p {
   font-size: 1rem;
   color: #ccc;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .menu-card:hover {
@@ -121,6 +150,7 @@ body {
   }
 }
 
+/* === Модальное окно === */
 .modal {
   display: none; /* по умолчанию скрыто */
   position: fixed;
@@ -132,6 +162,19 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .modal-content {
@@ -143,6 +186,31 @@ body {
   color: #fff;
   text-align: center;
   box-shadow: 0 0 20px #00ffff;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.modal-content p {
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.modal-content em {
+  font-style: italic;
+  color: #00ffff;
+}
+
+.modal-content strong {
+  font-weight: bold;
+  color: #ff00ff;
+}
+
+.modal-content .highlight {
+  background-color: rgba(0, 255, 255, 0.2);
+  padding: 2px 4px;
+  border-radius: 3px;
 }
 
 .modal-close {
@@ -153,5 +221,3 @@ body {
   cursor: pointer;
   color: #00ffff;
 }
-
-
