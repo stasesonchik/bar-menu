@@ -23,6 +23,7 @@
   transform: translateX(0) rotate(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+/* Анимация возврата карточки слева */
 
 /* ========================== Модальные окна ========================== */
 .modal.show {

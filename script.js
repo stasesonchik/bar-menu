@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     {id:'sex_na_obscom', title:'Секс на обском', price:'250₽', img:'assets/images/sex_na_obskom.jpg'},
     {id:'leka_v_prime', title:'Лека в прайме', price:'200₽', img:'assets/images/leka_v_praime.jpg'},
     {id:'history', title:'История', price:'200₽', img:'assets/images/histori.jpg'},
-    {id:'pivnaya_ryumka', title:'Пивная рюмка из Трёхгорного', price:'150₽', img:'assets/images/ryumka.jpg'},
-    {id:'getero_laguna', title:'Гетеросексуальная лагуна', price:'150₽', img:'assets/images/laguna.jpg'}
+    {id:'pivnaya_ryumka', title:'Пивная рюмка из Трёхгорного', price:'150₽', video:'assets/videos/ryumka.mp4'},
+    {id:'getero_laguna', title:'Не голубая лагуна', price:'150₽', img:'assets/images/laguna.jpg'}
   ];
 
   const shots = [
-    {id:'p_52', title:'П-52', price:'100₽', img:'assets/images/p_p2.jpg'},
+    {id:'p_52', title:'П-52', price:'100₽', img:'assets/images/p_52.jpg'},
     {id:'Kurator', title:'Хуевый Куратор', price:'150₽ (2 шт)', img:'assets/images/kurator.jpg'},
     {id:'Vkusno', title:'Вкусно', price:'300₽ (6 шт)', img:'assets/images/vkusno.jpg'},
     {id:'Smert', title:'Смерть в саване', price:'300₽ (6 шт)', img:'assets/images/smert.jpg'}
@@ -39,87 +39,107 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentTranslateY = 0;
 
   function createCard(cardData) {
-    const card = document.createElement('div');
-    card.className = 'menu-card';
-    card.innerHTML = `
-      <img src="${cardData.img}" alt="${cardData.title}">
-      <h3>${cardData.title}</h3>
-      <p>${cardData.price}</p>
+  const card = document.createElement('div');
+  card.className = 'menu-card';
+
+  // Проверка: есть ли видео
+  let mediaContent;
+  if (cardData.video) {
+    mediaContent = `
+      <video autoplay loop muted playsinline class="card-media">
+        <source src="${cardData.video}" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
     `;
-    card.style.zIndex = currentCards.length;
-    card.style.transform = 'scale(1) translateY(0)';
-    card.style.opacity = '1';
+  } else {
+    mediaContent = `<img src="${cardData.img}" alt="${cardData.title}" class="card-media">`;
+  }
+
+  card.innerHTML = `
+    ${mediaContent}
+    <h3>${cardData.title}</h3>
+    <p>${cardData.price}</p>
+  `;
+
+  card.style.zIndex = currentCards.length;
+  card.style.transform = 'scale(1) translateY(0)';
+  card.style.opacity = '1';
+  card.style.transition = 'none';
+
+  // Модальное окно
+  card.addEventListener('click', () => {
+    modalTitle.textContent = cardData.title;
+    modalText.innerHTML = descriptions[cardData.id] || "Описание недоступно";
+    modal.classList.add('show');
+  });
+
+  // Свайп по всей карточке
+  card.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    currentTranslateX = 0;
+    currentTranslateY = 0;
     card.style.transition = 'none';
+  });
 
-    // Модальное окно
-    card.addEventListener('click', () => {
-      modalTitle.textContent = cardData.title;
-      modalText.innerHTML = descriptions[cardData.id] || "Описание недоступно";
-      modal.classList.add('show');
-    });
+  card.addEventListener('touchmove', e => {
+    const moveX = e.touches[0].clientX - startX;
+    const moveY = e.touches[0].clientY - startY;
+    currentTranslateX = moveX;
+    currentTranslateY = moveY;
 
-    // Свайп по всей карточке
-    card.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      currentTranslateX = 0;
-      currentTranslateY = 0;
-      card.style.transition = 'none';
-    });
+    card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.1}deg)`;
+  });
 
-    card.addEventListener('touchmove', e => {
-      const moveX = e.touches[0].clientX - startX;
-      const moveY = e.touches[0].clientY - startY;
-      currentTranslateX = moveX;
-      currentTranslateY = moveY;
+  card.addEventListener('touchend', () => {
+    const threshold = 100;
+    if (Math.abs(currentTranslateX) > threshold) {
+      swipeCard(card, currentTranslateX);
+    } else {
+      card.style.transition = 'transform 0.3s ease';
+      card.style.transform = 'translate(0,0) rotate(0deg)';
+    }
+  });
 
-      card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.1}deg)`;
-    });
+  return card;
+}
 
-    card.addEventListener('touchend', () => {
-      const threshold = 100; // минимальное смещение для перелистывания
-      if(Math.abs(currentTranslateX) > threshold) {
-        swipeCard(card, currentTranslateX);
-      } else {
-        // Возврат на место
-        card.style.transition = 'transform 0.3s ease';
-        card.style.transform = 'translate(0,0) rotate(0deg)';
-      }
-    });
+let history = []; // массив истории пролистываний
 
-    return card;
+function swipeCard(card, diffX) {
+  const direction = diffX > 0 ? 1 : -1;
+
+  if(direction === 1 && history.length > 0) {
+    // свайп вправо — вернуть предыдущую карточку
+    topIndex = history.pop(); // берём последний индекс
+    showNextCard(true); // true = отображение из истории
+  } else {
+    // свайп влево — обычное пролистывание
+    history.push(topIndex); // сохраняем текущий индекс
+    topIndex = (topIndex + 1) % currentCards.length;
+    showNextCard();
   }
 
-  function swipeCard(card, diffX) {
-    const direction = diffX > 0 ? 1 : -1;
-    card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-    card.style.transform = `translateX(${direction * 300}px) rotate(${direction * 10}deg)`;
-    card.style.opacity = '0';
+  card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+  card.style.transform = `translateX(${direction * 300}px) rotate(${direction * 10}deg)`;
+  card.style.opacity = '0';
+  card.addEventListener('transitionend', () => card.remove(), { once: true });
+}
 
-    card.addEventListener('transitionend', () => {
-      card.remove();
-      topIndex = (topIndex + 1) % currentCards.length;
-      showNextCard();
-    }, { once: true });
-  }
+function showNextCard(fromHistory = false) {
+  mobileCardsContainer.innerHTML = '';
+  const cardData = currentCards[topIndex];
+  const topCard = createCard(cardData);
+  mobileCardsContainer.appendChild(topCard);
 
-  function showNextCard() {
-    mobileCardsContainer.innerHTML = '';
-
-    // Верхняя карточка
-    const cardData = currentCards[topIndex];
-    const topCard = createCard(cardData);
-    mobileCardsContainer.appendChild(topCard);
-
-    // Следующая карточка (под ней)
-    const nextIndex = (topIndex + 1) % currentCards.length;
-    const nextData = currentCards[nextIndex];
-    const nextCard = createCard(nextData);
-    nextCard.style.transform = 'scale(0.95) translateY(10px)';
-    nextCard.style.opacity = '1';
-    nextCard.style.zIndex = currentCards.length - 1;
-    mobileCardsContainer.insertBefore(nextCard, topCard);
-  }
+  // следующая карточка под ней
+  const nextIndex = (topIndex + 1) % currentCards.length;
+  const nextCard = createCard(currentCards[nextIndex]);
+  nextCard.style.transform = 'scale(0.95) translateY(10px)';
+  nextCard.style.opacity = '1';
+  nextCard.style.zIndex = currentCards.length - 1;
+  mobileCardsContainer.insertBefore(nextCard, topCard);
+}
 
 function updateTheme(category) {
   document.body.classList.remove('cocktails-theme', 'shots-theme');
