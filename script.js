@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
  ];
 
   const shots = [
-    {id:'p_52', title:'П-52', price:'90', img:'assets/images/p_52.jpg'},
+    {id:'p_52', title:'П-52', price:'90 (1 шт)', img:'assets/images/p_52.jpg'},
     {id:'Kurator', title:'Хуевый Куратор', price:'149₽ (2 шт)', img:'assets/images/kurator.jpg'},
     {id:'Vkusno', title:'Вкусно', price:'290₽ (6 шт)', img:'assets/images/vkusno.jpg'},
     {id:'Smert', title:'Смерть в саване', price:'290₽ (6 шт)', img:'assets/images/smert2.jpg'},
