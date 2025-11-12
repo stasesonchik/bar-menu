@@ -16,21 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const chooseShots = document.getElementById('choose-shots');
 
   const cocktails = [
-    {id:'long_island', title:'Unsigned long long island', price:'300₽', img:'assets/images/long_island.jpg'},
-    {id:'adren_arina', title:'АдренАрина', price:'250₽', img:'assets/images/adren_arina.jpg'},
-    {id:'sex_na_obscom', title:'Секс на обском', price:'250₽', img:'assets/images/sex_na_obskom.jpg'},
-    {id:'chuma', title:'Nagiborosis Contagium', price:'200₽', img:'assets/images/chuma.jpg'},
-    {id:'history', title:'История', price:'200₽', img:'assets/images/histori.jpg'},
-    {id:'pivnaya_ryumka', title:'Пивная рюмка из Трёхгорного', price:'150₽', video:'assets/videos/ryumka.mp4'},
-    {id:'laguna', title:'Не голубая лагуна', price:'150₽', img:'assets/images/laguna.jpg'}
+    {id:'long_island', title:'Unsigned long long island', price:'290₽', img:'assets/images/long_island.jpg'},
+    {id:'adren_arina', title:'АдренАрина', price:'249₽', img:'assets/images/adren_arina.jpg'},
+    //{id:'sex_na_obscom', title:'Секс на обском', price:'190₽', img:'assets/images/sex_na_obskom.jpg'},
+    {id:'chuma', title:'Nagiborosis Contagium', price:'190₽', img:'assets/images/chuma.jpg'},
+    {id:'leka_v_praime', title:'Лека в прайме', price:'190', img:'assets/images/leka_v_praime.jpg'},
+    {id:'history', title:'Смекалочка', price:'190₽', img:'assets/images/history.jpg'},
+    {id:'pivnaya_ryumka', title:'Пивная рюмка из Трёхгорного', price:'190₽', video:'assets/videos/ryumka.mp4'},
+    {id:'laguna', title:'Не голубая лагуна', price:'190₽', img:'assets/images/laguna.jpg'}
  ];
 
   const shots = [
-    {id:'p_52', title:'П-52', price:'100₽', img:'assets/images/p_52.jpg'},
-    {id:'Kurator', title:'Хуевый Куратор', price:'150₽ (2 шт)', img:'assets/images/kurator.jpg'},
-    {id:'Vkusno', title:'Вкусно', price:'300₽ (6 шт)', img:'assets/images/vkusno.jpg'},
-    {id:'Smert', title:'Смерть в саване', price:'300₽ (6 шт)', img:'assets/images/smert2.jpg'},
-    {id: 'fast_2',title: 'Быстрая Двойка',price: 'Цена₽',img: 'assets/images/fast_2.jpg'}
+    {id:'p_52', title:'П-52', price:'90', img:'assets/images/p_52.jpg'},
+    {id:'Kurator', title:'Хуевый Куратор', price:'149₽ (2 шт)', img:'assets/images/kurator.jpg'},
+    {id:'Vkusno', title:'Вкусно', price:'290₽ (6 шт)', img:'assets/images/vkusno.jpg'},
+    {id:'Smert', title:'Смерть в саване', price:'290₽ (6 шт)', img:'assets/images/smert2.jpg'},
+    {id:'fast_2',title: 'Быстрая Двойка',price: '290₽',img: 'assets/images/fast_2.jpg'}
   ];
 
   let currentCards = [];
