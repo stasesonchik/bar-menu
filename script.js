@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {id:'Kurator', title:'Хуевый Куратор', price:'149₽ (2 шт)', img:'assets/images/kurator.jpg'},
     {id:'Vkusno', title:'Вкусно', price:'290₽ (6 шт)', img:'assets/images/vkusno.jpg'},
     {id:'Smert', title:'Смерть в саване', price:'290₽ (6 шт)', img:'assets/images/smert2.jpg'},
-    {id:'fast_2',title: 'Быстрая Двойка',price: '290₽',img: 'assets/images/fast_2.jpg'}
+    {id:'fast_2',title: 'Быстрая Двойка',price: '290₽ (5 шт)',img: 'assets/images/fast_2.jpg'}
   ];
 
   let currentCards = [];
